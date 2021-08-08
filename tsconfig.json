@@ -14,7 +14,7 @@
     "importHelpers": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
-    "module": "commonjs",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
@@ -37,6 +37,6 @@
     "target": "es5",
     "outDir": "./dist"
   },
-  "include": ["src"],
+  "include": ["./src/**/*"],
   "exclude": ["dist", "node_modules"]
 }
