@@ -18,6 +18,7 @@ export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
       fields,
       accessToken,
       'GET',
+      filters,
     )
     const { data, error } = useSWR(
       [url, select, token, method, null, filterString],

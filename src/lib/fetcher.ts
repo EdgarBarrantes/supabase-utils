@@ -18,6 +18,7 @@ export const getFetcher =
     let headers = {
       apikey: apiKey,
       Authorization: `Bearer ${token}`,
+      'Access-Control-Allow-Origin': '*',
     }
     const postHeaders = {
       'Content-Type': 'application/json',
@@ -39,6 +40,7 @@ export const getFetcher =
     }
 
     return fetch(
+      // TODO: Find a cleaner way to do this.
       `${url}?${filter && `${filter}${select && '&'}`}${select && `${select}`}`,
       fetchOptions,
     ).then((res) => res.json())

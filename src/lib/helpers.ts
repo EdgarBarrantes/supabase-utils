@@ -8,13 +8,12 @@ export function getOptions(
   method: HttpMethod = 'GET',
   filters: IFilter[] = [],
 ) {
-  const filterString = getModifierString(filters)
   return {
-    url: `${apiUrl}/${table}`,
+    url: `${apiUrl}/rest/v1/${table}`,
     select: `select=${fields.join()}`,
     token,
     method,
-    filterString,
+    filterString: getModifierString(filters),
   }
 }
 
