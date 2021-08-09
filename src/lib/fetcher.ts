@@ -12,16 +12,15 @@ export const getFetcher =
     let headers = {
       apikey: apiKey,
       Authorization: `Bearer ${token}`,
-      'Access-Control-Allow-Origin': '*',
+    }
+    if (range) {
+      Object.assign(headers, {
+        Range: range,
+      })
     }
     let fetchOptions = {
       method: 'GET',
       headers: new Headers(headers),
-    }
-    if (range) {
-      Object.assign(fetchOptions, {
-        Range: range,
-      })
     }
     return fetch(getFinalUrl(url, filter, select), fetchOptions).then((res) =>
       res.json(),
