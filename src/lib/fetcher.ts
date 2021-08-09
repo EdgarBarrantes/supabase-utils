@@ -1,10 +1,5 @@
-import { getRangeString } from './helpers'
+import { getFinalUrl } from './helpers'
 
-/**
- * Range given as "0-2" (to get first three elements)
- * In useSWR, this can't receive an object.
- * Because of this, for now, if a filter is needed, send data as null.
- **/
 export const getFetcher =
   (apiKey: string) =>
   (
@@ -25,13 +20,10 @@ export const getFetcher =
     }
     if (range) {
       Object.assign(fetchOptions, {
-        range,
+        Range: range,
       })
     }
-    console.log('Fetch options', fetchOptions)
-    return fetch(
-      // TODO: Find a cleaner way to do this.
-      `${url}?${filter && `${filter}${select && '&'}`}${select && `${select}`}`,
-      fetchOptions,
-    ).then((res) => res.json())
+    return fetch(getFinalUrl(url, filter, select), fetchOptions).then((res) =>
+      res.json(),
+    )
   }

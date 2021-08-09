@@ -28,3 +28,9 @@ export function getModifierString(filter: IFilter[] = []) {
     .map((filter) => `${filter.field}=${filter.relationship}.${filter.value}`)
     .join('&')
 }
+
+export function getFinalUrl(url: string, filter: string, select: string) {
+  return `${url}?${filter && `${filter}${select && '&'}`}${
+    select && `${select}`
+  }`
+}
