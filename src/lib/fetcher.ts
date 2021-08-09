@@ -1,4 +1,4 @@
-import { HttpMethod } from './intefaces'
+import { getRangeString } from './helpers'
 
 /**
  * Range given as "0-2" (to get first three elements)
@@ -8,35 +8,25 @@ import { HttpMethod } from './intefaces'
 export const getFetcher =
   (apiKey: string) =>
   (
+    token: string,
     url: string,
     select: string,
-    token: string,
-    method: HttpMethod,
-    data: any = null,
     filter: string = '',
+    range: number[],
   ) => {
     let headers = {
       apikey: apiKey,
       Authorization: `Bearer ${token}`,
       'Access-Control-Allow-Origin': '*',
     }
-    const postHeaders = {
-      'Content-Type': 'application/json',
-      Prefer: 'return=representation',
-    }
-    if (method === 'POST' || method === 'PATCH') {
-      Object.assign(headers, postHeaders)
-    }
-
     let fetchOptions = {
-      method,
+      method: 'GET',
       headers: new Headers(headers),
     }
-    const postOptions = {
-      body: JSON.stringify(data),
-    }
-    if (method === 'POST' || method === 'PATCH') {
-      Object.assign(fetchOptions, postOptions)
+    if (range.length === 2 && range[0] >= 0 && range[0] > range[1]) {
+      Object.assign(fetchOptions, {
+        range: getRangeString(range),
+      })
     }
 
     return fetch(

@@ -1,20 +1,21 @@
-import { HttpMethod, IFilter } from './intefaces'
+import { IFilter } from './intefaces'
 
 export function getOptions(
   apiUrl: string,
   table: string,
   fields: string[],
-  token: string,
-  method: HttpMethod = 'GET',
   filters: IFilter[] = [],
+  range: number[] = [],
 ) {
   return {
     url: `${apiUrl}/rest/v1/${table}`,
     select: `select=${fields.join()}`,
-    token,
-    method,
     filterString: getModifierString(filters),
   }
+}
+
+export function getRangeString(range: number[]) {
+  return range.join('-')
 }
 
 export function getModifierString(filter: IFilter[] = []) {

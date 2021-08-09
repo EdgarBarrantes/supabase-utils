@@ -5,23 +5,21 @@ import { IFilter } from './lib/intefaces'
 
 export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
   const fetcher = getFetcher(apiKey)
-  // TODO receive order and filter.
   const getEntries = <T>(
-    accessToken: string,
+    token: string,
     table: string,
     fields: string[],
     filters: IFilter[] = [],
+    range: number[] = [],
   ) => {
-    const { url, select, token, method, filterString } = getOptions(
+    const { url, select, filterString } = getOptions(
       apiUrl,
       table,
       fields,
-      accessToken,
-      'GET',
       filters,
     )
     const { data, error } = useSWR(
-      [url, select, token, method, null, filterString],
+      [token, url, select, filterString, range],
       fetcher,
     )
     return {
@@ -30,10 +28,7 @@ export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
       isError: error,
     }
   }
-
   return {
-    useGetEntry: () => {},
     useGetEntries: getEntries,
-    useSetEntries: () => {},
   }
 }
