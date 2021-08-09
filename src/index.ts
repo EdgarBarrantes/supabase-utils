@@ -24,8 +24,11 @@ export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
       fetcher,
     )
     return {
+      data: data as T[],
+      // Just here for compatibility.
       entries: data as T[],
       error,
+      isError: error,
       isValidating,
       mutate,
       revalidate,

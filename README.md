@@ -11,9 +11,9 @@ export const { useGetEntries } = getSupabaseSWR(
 )
 
 const {
-  entries: users,
+  data: users,
+  error,
   isLoading,
-  isError,
 } = useGetEntries<Users>(
   session.access_token,
   // Name of the table.
