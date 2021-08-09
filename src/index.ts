@@ -19,14 +19,17 @@ export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
       filters,
       range,
     )
-    const { data, error } = useSWR(
+    const { data, error, isValidating, mutate, revalidate } = useSWR(
       [token, url, select, filterString, rangeString],
       fetcher,
     )
     return {
       entries: data as T[],
+      error,
+      isValidating,
+      mutate,
+      revalidate,
       isLoading: !error && !data,
-      isError: error,
     }
   }
   return {
