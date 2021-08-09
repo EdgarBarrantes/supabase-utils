@@ -17,7 +17,7 @@ const {
 } = useGetEntries<Users>(
   session.access_token,
   // Name of the table.
-  'projects',
+  'users',
   // Fields to get the query from.
   ['name', 'uuid'],
   // Collection of filters
@@ -25,7 +25,7 @@ const {
     { field: 'order', relationship: 'name', value: 'asc' },
     { field: 'age', relationship: 'lt', value: '18' },
   ],
-  // Range
+  // Range (selects the first 3 items)
   [0, 2],
 )
 ```
