@@ -11,11 +11,16 @@ export function getOptions(
     url: `${apiUrl}/rest/v1/${table}`,
     select: `select=${fields.join()}`,
     filterString: getModifierString(filters),
+    rangeString: getRangeString(range),
   }
 }
 
 export function getRangeString(range: number[]) {
-  return range.join('-')
+  if (range.length === 2 && range[0] >= 0 && range[1] > range[0]) {
+    return range.join('-')
+  } else {
+    return false
+  }
 }
 
 export function getModifierString(filter: IFilter[] = []) {

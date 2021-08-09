@@ -12,14 +12,15 @@ export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
     filters: IFilter[] = [],
     range: number[] = [],
   ) => {
-    const { url, select, filterString } = getOptions(
+    const { url, select, filterString, rangeString } = getOptions(
       apiUrl,
       table,
       fields,
       filters,
+      range,
     )
     const { data, error } = useSWR(
-      [token, url, select, filterString, range],
+      [token, url, select, filterString, rangeString],
       fetcher,
     )
     return {

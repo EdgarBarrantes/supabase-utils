@@ -12,7 +12,7 @@ export const getFetcher =
     url: string,
     select: string,
     filter: string = '',
-    range: number[],
+    range: string | boolean = false,
   ) => {
     let headers = {
       apikey: apiKey,
@@ -23,12 +23,12 @@ export const getFetcher =
       method: 'GET',
       headers: new Headers(headers),
     }
-    if (range.length === 2 && range[0] >= 0 && range[0] > range[1]) {
+    if (range) {
       Object.assign(fetchOptions, {
-        range: getRangeString(range),
+        range,
       })
     }
-
+    console.log('Fetch options', fetchOptions)
     return fetch(
       // TODO: Find a cleaner way to do this.
       `${url}?${filter && `${filter}${select && '&'}`}${select && `${select}`}`,

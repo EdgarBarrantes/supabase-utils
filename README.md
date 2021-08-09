@@ -29,3 +29,5 @@ const {
   [0, 2],
 )
 ```
+
+You can pretty much use the filters available here that supabase allows for: [https://postgrest.org/en/v7.0.0/api.html](https://postgrest.org/en/v7.0.0/api.html)
