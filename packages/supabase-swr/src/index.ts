@@ -25,7 +25,7 @@ export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
     )
     return {
       data: data as T[],
-      // Just here for compatibility.
+      // Just here for compatibility
       entries: data as T[],
       error,
       isError: error,

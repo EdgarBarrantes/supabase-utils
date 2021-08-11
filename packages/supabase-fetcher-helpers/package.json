@@ -1,6 +1,6 @@
 {
   "name": "@edgarbarrantes/supabase-fetcher-helpers",
-  "version": "0.1.12",
+  "version": "0.1.0",
   "description": "Fetcher and helpers for supabase",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
