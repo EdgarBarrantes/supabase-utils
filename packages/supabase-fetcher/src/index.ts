@@ -10,11 +10,30 @@ export const getSupabaseFetcher = (apiUrl: string, apiKey: string) => {
     table: string,
     fields: string[],
     token: string,
-    uuid: string = '',
-    filter: IFilter[] = [{ field: 'uuid', relationship: 'eq', value: uuid }],
+    filter: IFilter[] | string,
+    column: string = 'uuid',
   ) => {
-    const { select, filterString } = getOptions(fields, filter)
-    return await fetcher(token, apiUrl, table, select, filterString)
+    let processedFilter: IFilter[]
+    switch (typeof filter) {
+      case 'object': {
+        processedFilter = filter
+        break
+      }
+      case 'string': {
+        if (filter === '') {
+          processedFilter = []
+        } else {
+          processedFilter = [
+            { field: column, relationship: 'eq', value: filter },
+          ]
+        }
+        break
+      }
+      default:
+        processedFilter = []
+    }
+    const { select, filterString } = getOptions(fields, processedFilter)
+    return fetcher(token, apiUrl, table, select, filterString)
   }
   return {
     getEntries,
