@@ -1,27 +1,21 @@
 {
-  "name": "@edgarbarrantes/supabase-utils",
-  "version": "0.1.11",
-  "description": "Utils for data fetching from supabase",
+  "name": "@edgarbarrantes/supabase-swr",
+  "version": "0.1.15",
+  "description": "SWR wrapper for supabase",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "files": [
     "/dist"
   ],
   "dependencies": {
-    "tslib": "^2.3.0"
-  },
-  "devDependencies": {
-    "eslint": "^7.32.0",
-    "lerna": "^4.0.0",
-    "prettier": "^2.3.2"
+    "@edgarbarrantes/supabase-fetcher-helpers": "^0.1.15",
+    "swr": "^0.5.6"
   },
   "scripts": {
+    "build": "tsc",
     "localPublish": "npm run build; yalc publish --push",
-    "clean": "lerna clean --yes",
-    "bootstrap": "lerna bootstrap --hoist",
-    "lint": "lerna run lint",
-    "build": "lerna run build",
-    "test": "lerna run test"
+    "prepack": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -32,8 +26,7 @@
     "swr",
     "data",
     "fetching",
-    "react",
-    "nextjs"
+    "react"
   ],
   "author": "Edgar Barrantes",
   "license": "ISC",

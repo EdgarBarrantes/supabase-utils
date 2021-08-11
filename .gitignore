@@ -2,3 +2,4 @@ node_modules
 dist
 .yalc
 tsconfig.tsbuildinfo
+lerna-debug.log

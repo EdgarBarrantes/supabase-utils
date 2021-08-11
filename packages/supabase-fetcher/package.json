@@ -1,0 +1,34 @@
+{
+  "name": "@edgarbarrantes/supabase-fetcher",
+  "version": "0.1.15",
+  "description": "Fetch entries from supabase, mainly useful when supabase library is not as slick, like in next's getServerSideProps",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "files": [
+    "/dist"
+  ],
+  "dependencies": {
+    "@edgarbarrantes/supabase-fetcher-helpers": "^0.1.15"
+  },
+  "scripts": {
+    "build": "tsc",
+    "localPublish": "npm run build; yalc publish --push",
+    "prepack": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdgarBarrantes/supabase-swr.git"
+  },
+  "keywords": [
+    "supabase",
+    "data",
+    "fetching"
+  ],
+  "author": "Edgar Barrantes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdgarBarrantes/supabase-utils/issues"
+  },
+  "homepage": "https://github.com/EdgarBarrantes/supabase-utils#readme"
+}
