@@ -1,14 +1,11 @@
 import { IFilter } from './intefaces'
 
 export function getOptions(
-  apiUrl: string,
-  table: string,
   fields: string[],
   filters: IFilter[] = [],
   range: number[] = [],
 ) {
   return {
-    url: `${apiUrl}/rest/v1/${table}`,
     select: `select=${fields.join()}`,
     filterString: getModifierString(filters),
     rangeString: getRangeString(range),
@@ -27,6 +24,10 @@ export function getModifierString(filter: IFilter[] = []) {
   return filter
     .map((filter) => `${filter.field}=${filter.relationship}.${filter.value}`)
     .join('&')
+}
+
+export function getBaseUrl(url: string, table: string) {
+  return `${url}/rest/v1/${table}`
 }
 
 export function getFinalUrl(url: string, filter: string, select: string) {

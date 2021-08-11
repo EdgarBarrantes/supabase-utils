@@ -1,7 +1,9 @@
 import useSWR from 'swr'
-import { getFetcher } from './lib/fetcher'
-import { getOptions } from './lib/helpers'
-import { IFilter } from './lib/intefaces'
+import {
+  getFetcher,
+  getOptions,
+  IFilter,
+} from '@edgarbarrantes/supabase-fetcher-helpers'
 
 export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
   const fetcher = getFetcher(apiKey)
@@ -12,15 +14,13 @@ export const getSupabaseSWR = (apiUrl: string, apiKey: string) => {
     filters: IFilter[] = [],
     range: number[] = [],
   ) => {
-    const { url, select, filterString, rangeString } = getOptions(
-      apiUrl,
-      table,
+    const { select, filterString, rangeString } = getOptions(
       fields,
       filters,
       range,
     )
     const { data, error, isValidating, mutate, revalidate } = useSWR(
-      [token, url, select, filterString, rangeString],
+      [token, apiUrl, table, select, filterString, rangeString],
       fetcher,
     )
     return {

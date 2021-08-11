@@ -1,10 +1,11 @@
-import { getFinalUrl } from './helpers'
+import { getBaseUrl, getFinalUrl } from './helpers'
 
 export const getFetcher =
   (apiKey: string) =>
   (
     token: string,
     url: string,
+    table: string,
     select: string,
     filter: string = '',
     range: string | boolean = false,
@@ -18,11 +19,12 @@ export const getFetcher =
         Range: range,
       })
     }
-    let fetchOptions = {
+    const fetchOptions = {
       method: 'GET',
       headers: new Headers(headers),
     }
-    return fetch(getFinalUrl(url, filter, select), fetchOptions).then((res) =>
-      res.json(),
+    const baseUrl = getBaseUrl(url, table)
+    return fetch(getFinalUrl(baseUrl, filter, select), fetchOptions).then(
+      (res) => res.json(),
     )
   }
