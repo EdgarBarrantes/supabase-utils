@@ -1,6 +1,6 @@
 {
   "name": "@edgarbarrantes/supabase-fetcher",
-  "version": "0.1.0",
+  "version": "0.1.13",
   "description": "Fetch entries from supabase, mainly useful when supabase library is not as slick, like in next's getServerSideProps",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
